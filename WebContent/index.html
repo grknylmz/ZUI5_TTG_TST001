@@ -1,0 +1,761 @@
+<!DOCTYPE HTML>
+
+
+
+
+
+
+
+<html lang="tr">
+
+
+
+
+
+
+
+  <head>
+
+
+
+
+
+
+
+    <meta http-equiv="X-UA-Compatible" 	content="IE=edge">
+
+
+
+
+
+
+
+    <meta http-equiv='Content-Type'   content='text/html;charset=UTF-8'/>
+
+
+
+
+
+
+
+    <meta http-equiv="Cache-Control" 	content="no-cache, no-store, must-revalidate" />
+
+
+
+
+
+
+
+    <meta http-equiv="Pragma"       content="no-cache" />
+
+
+
+
+
+
+
+    <meta http-equiv="Expires"      content="0" />
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="CSS3/customStyle.css">
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="CSS3/opera.css">
+
+
+
+
+
+
+
+  </head>
+
+
+
+
+
+
+
+  <body class="sapUiBody" role="application">
+
+
+
+
+
+
+
+    <script src="lib/eventListenerIEPolyfill.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/jquery-1.12.2.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/webtoolkit.md5.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/jszip-deflate.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/jszip-inflate.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/jszip-load.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/jszip.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/main.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/nodezip.js"></script>
+
+
+
+
+
+
+
+    <script src="lib/xlsx/xlsx.js"></script>
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+
+
+
+
+
+      window.onbeforeunload = function (e) {
+
+
+
+
+
+
+
+        var message = "Sayfadan ayrılmak istediğinizden emin misiniz?",
+
+
+
+
+
+
+
+        e = e || window.event;
+
+
+
+
+
+
+
+        // For IE and Firefox
+
+
+
+
+
+
+
+        if (e) {
+
+
+
+
+
+
+
+            e.returnValue = message;
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+      // For Safari
+
+
+
+
+
+
+
+        return message;
+
+
+
+
+
+
+
+      };
+
+
+
+
+
+
+
+      /* console.log("before unload");
+
+
+
+
+
+
+
+      window.addEventListener("beforeunload", function (e) {
+
+
+
+
+
+
+
+        var confirmationMessage = 'Kaydedilmemiş verileriniz olabilir, sayfadan ayrılmak istediğinizden emin misiniz?';
+
+
+
+
+
+
+
+        (e || window.event).returnValue = confirmationMessage;
+
+
+
+
+
+
+
+        return confirmationMessage;
+
+
+
+
+
+
+
+    }); */
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+    <!-- <script>
+
+
+
+
+
+
+
+      jsPrintSetup.setOption('orientation', jsPrintSetup.kLandscapeOrientation);
+
+
+
+
+
+
+
+    </script> -->
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+
+
+
+
+
+      var oGlobalBusyDialog;
+
+
+
+
+
+
+
+      var oNavBusyDialog;
+
+
+
+
+
+
+
+      var oNavBusyIndicator;
+
+
+
+
+
+
+
+      var oUserCreditsModel;
+
+
+
+
+
+
+
+      var oHierarchyData;
+
+
+
+
+
+
+
+      var oDataPending;
+
+
+
+
+
+
+
+      var oDataReport;
+
+
+
+
+
+
+
+      var sReportType;
+
+
+
+
+
+
+
+      var oTaxData;
+
+
+
+
+
+
+
+      var sDealerID;
+
+
+
+
+
+
+
+      var isProdDisplayMode;
+
+
+
+
+
+
+
+      var sSelectedHierarchy;
+
+
+
+
+
+
+
+      var sSelectedProduct;
+
+
+
+
+
+
+
+      var sProductNav;
+
+
+
+
+
+
+
+      var sCreatedProduct;
+
+
+
+
+
+
+
+      var sAttachmentURL;
+
+
+
+
+
+
+
+      var oMainController;
+
+
+
+
+
+
+
+      var sSaleType;
+
+
+
+
+
+
+
+      var bPrintEnabled;
+
+
+
+
+
+
+
+      var sVbeln;
+
+
+
+
+
+
+
+      var sLoginUser;
+
+
+
+
+
+
+
+      var batchGuid;
+
+
+
+
+
+
+
+      var batchGuidP;
+
+
+
+
+
+
+
+      var sJobNo = "";
+
+
+
+
+
+
+
+      var sJobNoP = "";
+
+
+
+
+
+
+
+      var bInitialized  = false;
+
+
+
+
+
+
+
+      var bIstoday      = false;
+
+
+
+
+
+
+
+      var priceUploadOK = true;
+
+
+
+
+
+
+
+      var noAuth        = false;
+
+
+
+
+
+
+
+      var dealerAuthType = "";
+
+
+
+
+
+
+
+      var sDealerIDType;
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <script src="resources/sap-ui-core.js"
+
+
+
+
+
+
+
+        id="sap-ui-bootstrap"
+
+
+
+
+
+
+
+        data-sap-ui-libs="sap.m, sap.ui.commons, sap.suite.ui.commons"
+
+
+
+
+
+
+
+        data-sap-ui-theme="sap_bluecrystal"
+
+
+
+
+
+
+
+        data-sap-ui-appCacheBuster="./" >
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+
+
+
+
+
+
+
+    <script>
+
+
+
+
+
+
+
+    $(function(){
+
+
+
+
+
+
+
+      sap.ui.localResources("zui5_ttg_app001");
+
+
+
+
+
+
+
+      var app = new sap.m.App("launchpadApp", {initialPage:"idMain1"});
+
+
+
+
+
+
+
+      var page = sap.ui.view({id:"idMain1", viewName:"zui5_ttg_app001.Main", type:sap.ui.core.mvc.ViewType.XML});
+
+
+
+
+
+
+
+      app.addPage(page);
+
+
+
+
+
+
+
+      app.placeAt("content");
+
+
+
+
+
+
+
+      });
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <div id="content"></div>
+
+
+
+
+
+
+
+    <input id="hioek" type="hidden" value="0050568A1A241EE5B9D86EC8FA39B1F1">
+
+
+
+
+
+
+
+  </body>
+
+
+
+
+
+
+
+</html>

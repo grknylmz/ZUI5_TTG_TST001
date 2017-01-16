@@ -1,0 +1,953 @@
+<core:View
+
+
+
+
+
+
+
+	xmlns:core="sap.ui.core"
+
+
+
+
+
+
+
+	xmlns:mvc="sap.ui.core.mvc"
+
+
+
+
+
+
+
+	xmlns="sap.m"
+
+
+
+
+
+
+
+	xmlns:l="sap.ui.layout"
+
+
+
+
+
+
+
+	controllerName="zui5_ttg_app001.Main"
+
+
+
+
+
+
+
+	xmlns:html="http://www.w3.org/1999/xhtml" >
+
+
+
+
+
+
+
+	<Page showHeader="false">
+
+
+
+
+
+
+
+		<content>
+
+
+
+
+
+
+
+			<Panel class="customHeaderBorder">
+
+
+
+
+
+
+
+				<FlexBox
+
+
+
+
+
+
+
+					alignItems="Start"
+
+
+
+
+
+
+
+					justifyContent="SpaceBetween" >
+
+
+
+
+
+
+
+					<items>
+
+
+
+
+
+
+
+						<Image id="idMainLogo" src="img/logo_sphere.png" />
+
+
+
+
+
+
+
+						<FlexBox
+
+
+
+
+
+
+
+							direction="Column"
+
+
+
+
+
+
+
+							alignItems="End" >
+
+
+
+
+
+
+
+							<items>
+
+
+
+
+
+
+
+								<Link text="Oturumu Kapat" press="logout" />
+
+
+
+
+
+
+
+								<Label id="launchpadUserDescription" />
+
+
+
+
+
+
+
+								<!-- <ComboBox -->
+
+
+
+
+
+
+
+								<Select
+
+
+
+
+
+
+
+									id="comboBoxBranch"
+
+
+
+
+
+
+
+									width="300px"
+
+
+
+
+
+
+
+									change="onBranchSelection" >
+
+
+
+
+
+
+
+									<core:Item key="{DealerId}" text="{Dealer}" />
+
+
+
+
+
+
+
+								</Select>
+
+
+
+
+
+
+
+								<!-- </ComboBox> -->
+
+
+
+
+
+
+
+							</items>
+
+
+
+
+
+
+
+						</FlexBox>
+
+
+
+
+
+
+
+					</items>	
+
+
+
+
+
+
+
+				</FlexBox>				
+
+
+
+
+
+
+
+			</Panel>
+
+
+
+
+
+
+
+			<VBox>			
+
+
+
+
+
+
+
+			<!-- satış işlemleri başlık -->
+
+
+
+
+
+
+
+			<Label id="lpGroupHeaderS" text="SATIŞ İŞLEMLERİ" class="launchpad-groupHeader" width="100%" />
+
+
+
+
+
+
+
+			<!-- satış işlemleri uygulamaları -->
+
+
+
+
+
+
+
+			<TileContainer
+
+
+
+
+
+
+
+				class="launchpad-margin-left"
+
+
+
+
+
+
+
+				id="launchpadContainer1"
+
+
+
+
+
+
+
+				height="11rem" >
+
+
+
+
+
+
+
+				<tiles>
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="S01"
+
+
+
+
+
+
+
+						icon="sap-icon://sales-order"
+
+
+
+
+
+
+
+						title="SATIŞ"
+
+
+
+
+
+
+
+						press="toSale" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="S02"
+
+
+
+
+
+
+
+						icon="sap-icon://activity-individual"
+
+
+
+
+
+
+
+						title="HİZMET FATURASI"
+
+
+
+
+
+
+
+						press="toHizmet" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="S03"
+
+
+
+
+
+
+
+						icon="sap-icon://sales-order-item"
+
+
+
+
+
+
+
+						title="BEKLEYEN SATIŞLAR"
+
+
+
+
+
+
+
+						press="toPendingSales" />
+
+
+
+
+
+
+
+				</tiles>
+
+
+
+
+
+
+
+			</TileContainer>
+
+
+
+
+
+
+
+			<!-- raporlar başlık -->
+
+
+
+
+
+
+
+			<Label id="lpGroupHeaderR" text="RAPORLAR" class="launchpad-groupHeader" width="100%" />
+
+
+
+
+
+
+
+			<!-- raporlar uygulamaları -->
+
+
+
+
+
+
+
+			<TileContainer
+
+
+
+
+
+
+
+				class="launchpad-margin-left"
+
+
+
+
+
+
+
+				id="launchpadContainer2"
+
+
+
+
+
+
+
+				height="11rem" >
+
+
+
+
+
+
+
+				<tiles>
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="R01"
+
+
+
+
+
+
+
+						icon="sap-icon://expense-report"
+
+
+
+
+
+
+
+						title="SATIŞ RAPORU"
+
+
+
+
+
+
+
+						press="toSaleReport" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="R02"
+
+
+
+
+
+
+
+						icon="sap-icon://request"
+
+
+
+
+
+
+
+						title="TALEPLERİM"
+
+
+
+
+
+
+
+						press="toMyRequests" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="R03"
+
+
+
+
+
+
+
+						icon="sap-icon://email"
+
+
+
+
+
+
+
+						number="{number>/messageNumber}"
+
+
+
+
+
+
+
+						title="MESAJLARIM"
+
+
+
+
+
+
+
+						press="toMyMessages" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="R04"
+
+
+
+
+
+
+
+						icon="sap-icon://forward"
+
+
+
+
+
+
+
+						title="MESAJ OLUŞTUR"
+
+
+
+
+
+
+
+						press="toPublishMessage" />
+
+
+
+
+
+
+
+				</tiles>
+
+
+
+
+
+
+
+			</TileContainer>
+
+
+
+
+
+
+
+			<!-- tanımlamalar başlık -->
+
+
+
+
+
+
+
+			<Label id="lpGroupHeaderT" text="TANIMLAMALAR" class="launchpad-groupHeader" width="100%" />
+
+
+
+
+
+
+
+			<!-- tanımlamalar uygulamaları -->
+
+
+
+
+
+
+
+			<TileContainer
+
+
+
+
+
+
+
+				class="launchpad-margin-left"
+
+
+
+
+
+
+
+				id="launchpadContainer3"
+
+
+
+
+
+
+
+				height="11rem" >
+
+
+
+
+
+
+
+				<tiles>
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="T01"
+
+
+
+
+
+
+
+						icon="sap-icon://product"
+
+
+
+
+
+
+
+						title="ÜRÜN İŞLEMLERİ"
+
+
+
+
+
+
+
+						press="toProduct" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="T02"
+
+
+
+
+
+
+
+						icon="sap-icon://list"
+
+
+
+
+
+
+
+						title="TOPLU FİYAT GİRİŞİ"
+
+
+
+
+
+
+
+						press="toBatchPrice" />
+
+
+
+
+
+
+
+					<StandardTile
+
+
+
+
+
+
+
+						id="T03"
+
+
+
+
+
+
+
+						icon="sap-icon://add-product"
+
+
+
+
+
+
+
+						title="TOPLU ÜRÜN YARATMA"
+
+
+
+
+
+
+
+						press="toBatchProduct" />
+
+
+
+
+
+
+
+				</tiles>
+
+
+
+
+
+
+
+			</TileContainer>
+
+
+
+
+
+
+
+			</VBox>
+
+
+
+
+
+
+
+		</content>
+
+
+
+
+
+
+
+	</Page>
+
+
+
+
+
+
+
+</core:View>

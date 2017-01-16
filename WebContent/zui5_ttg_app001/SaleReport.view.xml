@@ -1,0 +1,1905 @@
+<core:View
+
+
+
+
+
+
+
+  xmlns:core="sap.ui.core"
+
+
+
+
+
+
+
+  xmlns:mvc="sap.ui.core.mvc"
+
+
+
+
+
+
+
+  xmlns="sap.m"
+
+
+
+
+
+
+
+  xmlns:l="sap.ui.layout"
+
+
+
+
+
+
+
+  xmlns:f="sap.ui.layout.form"
+
+
+
+
+
+
+
+  xmlns:t="sap.ui.model.type"
+
+
+
+
+
+
+
+  controllerName="zui5_ttg_app001.SaleReport"
+
+
+
+
+
+
+
+  xmlns:html="http://www.w3.org/1999/xhtml">
+
+
+
+
+
+
+
+  <Page>
+
+
+
+
+
+
+
+    <content>
+
+
+
+
+
+
+
+      <Panel
+
+
+
+
+
+
+
+        id="saleReportSearchPanel"
+
+
+
+
+
+
+
+        expandable="true"
+
+
+
+
+
+
+
+        expanded="true" >
+
+
+
+
+
+
+
+        <headerToolbar>
+
+
+
+
+
+
+
+          <Toolbar height="3rem">
+
+
+
+
+
+
+
+            <Text text="Arama kriterleri" />
+
+
+
+
+
+
+
+          </Toolbar>
+
+
+
+
+
+
+
+        </headerToolbar>
+
+
+
+
+
+
+
+        <content>
+
+
+
+
+
+
+
+          <l:Grid defaultSpan="L6 M6 S12" >
+
+
+
+
+
+
+
+            <f:SimpleForm
+
+
+
+
+
+
+
+              id="saleReportSearch1" >
+
+
+
+
+
+
+
+              <!-- <f:content>
+
+
+
+
+
+
+
+                <Button id="saleReportToday" text="Bugünün Satışlarını Listele" type="Emphasized" press="search" />
+
+
+
+
+
+
+
+                <Label text="Sipariş No" />
+
+
+
+
+
+
+
+                <Input id="saleReportVbeln" />
+
+
+
+
+
+
+
+                <Label text="Sipariş Tarihi Başlangıç" />
+
+
+
+
+
+
+
+                <DatePicker id="saleReportDateBeg" placeholder=" " valueFormat="yyyyMMdd" />
+
+
+
+
+
+
+
+                <Label text="Sipariş Tarihi Bitiş" />
+
+
+
+
+
+
+
+                <DatePicker id="saleReportDateEnd" placeholder=" " valueFormat="yyyyMMdd" />
+
+
+
+
+
+
+
+                <Label text="Seri / NMU" />
+
+
+
+
+
+
+
+                <Input id="saleReportSerial" />
+
+
+
+
+
+
+
+                <Label text="Fiş numarası" />
+
+
+
+
+
+
+
+                <Input id="saleReportDocno" />
+
+
+
+
+
+
+
+                <Label text="Adına İşlem Yapılan Satış Temsilcisi" />
+
+
+
+
+
+
+
+                <ComboBox id="saleReportSaleRep" />
+
+
+
+
+
+
+
+                <Label text="Kullanıcı" />
+
+
+
+
+
+
+
+                <ComboBox id="saleReportUser" />
+
+
+
+
+
+
+
+              </f:content> -->
+
+
+
+
+
+
+
+            </f:SimpleForm>
+
+
+
+
+
+
+
+            <VBox>
+
+
+
+
+
+
+
+              <Table
+
+
+
+
+
+
+
+                id="saleReportBranchTable"
+
+
+
+
+
+
+
+                inset="false"
+
+
+
+
+
+
+
+                class="paddingTop1"
+
+
+
+
+
+
+
+                mode="MultiSelect" >
+
+
+
+
+
+
+
+                <columns>
+
+
+
+
+
+
+
+                  <Column width="30%" text="Bayi Kodu" />
+
+
+
+
+
+
+
+                  <Column text="Bayi Adı" />
+
+
+
+
+
+
+
+                </columns>
+
+
+
+
+
+
+
+              </Table>
+
+
+
+
+
+
+
+            </VBox>
+
+
+
+
+
+
+
+          </l:Grid>
+
+
+
+
+
+
+
+        </content>
+
+
+
+
+
+
+
+      </Panel>
+
+
+
+
+
+
+
+      <Panel
+
+
+
+
+
+
+
+        id="saleReportTotalPanel"
+
+
+
+
+
+
+
+        expandable="true"
+
+
+
+
+
+
+
+        expanded="false" >
+
+
+
+
+
+
+
+        <headerToolbar>
+
+
+
+
+
+
+
+          <Toolbar height="3rem">
+
+
+
+
+
+
+
+            <Text text="Toplam Tutarlar" />
+
+
+
+
+
+
+
+          </Toolbar>
+
+
+
+
+
+
+
+        </headerToolbar>
+
+
+
+
+
+
+
+        <l:Grid
+
+
+
+
+
+
+
+          defaultSpan="L12 M12 S12"
+
+
+
+
+
+
+
+          width="auto" >
+
+
+
+
+
+
+
+          <l:content>
+
+
+
+
+
+
+
+            <f:SimpleForm
+
+
+
+
+
+
+
+              minWidth="1024"
+
+
+
+
+
+
+
+              maxContainerCols="2"
+
+
+
+
+
+
+
+              editable="false"
+
+
+
+
+
+
+
+              layout="ResponsiveGridLayout"
+
+
+
+
+
+
+
+              labelSpanL="3"
+
+
+
+
+
+
+
+              labelSpanM="3"
+
+
+
+
+
+
+
+              emptySpanL="4"
+
+
+
+
+
+
+
+              emptySpanM="4"
+
+
+
+
+
+
+
+              columnsL="1"
+
+
+
+
+
+
+
+              columnsM="1" >
+
+
+
+
+
+
+
+              <f:content>
+
+
+
+
+
+
+
+                <Label text="Toplam Satış" />
+
+
+
+
+
+
+
+                <Text id="saleReportTotal" />
+
+
+
+
+
+
+
+                <Label text="Toplam Nakit Satış" />
+
+
+
+
+
+
+
+                <Text id="saleReportTotalCash" />
+
+
+
+
+
+
+
+                <Label text="Toplam KK Satış" />
+
+
+
+
+
+
+
+                <Text id="saleReportTotalCard" />
+
+
+
+
+
+
+
+                <Label text="Toplam Temlikli Satış" />
+
+
+
+
+
+
+
+                <Text id="saleReportTotalTemlik" />
+
+
+
+
+
+
+
+              </f:content>
+
+
+
+
+
+
+
+            </f:SimpleForm>
+
+
+
+
+
+
+
+          </l:content>
+
+
+
+
+
+
+
+        </l:Grid>
+
+
+
+
+
+
+
+      </Panel>
+
+
+
+
+
+
+
+      <Panel
+
+
+
+
+
+
+
+        id="saleReportResultPanel"
+
+
+
+
+
+
+
+        expandable="true"
+
+
+
+
+
+
+
+        expanded="false">
+
+
+
+
+
+
+
+        <headerToolbar>
+
+
+
+
+
+
+
+          <Toolbar height="3rem">
+
+
+
+
+
+
+
+            <Text text="Arama sonucu" />
+
+
+
+
+
+
+
+          </Toolbar>
+
+
+
+
+
+
+
+        </headerToolbar>
+
+
+
+
+
+
+
+        <content>
+
+
+
+
+
+
+
+          <Table
+
+
+
+
+
+
+
+            id="saleReportResultTable"
+
+
+
+
+
+
+
+            mode="SingleSelectLeft"
+
+
+
+
+
+
+
+            inset="false"
+
+
+
+
+
+
+
+            growing="true"
+
+
+
+
+
+
+
+            growingScrollToLoad="true" >
+
+
+
+
+
+
+
+            <headerToolbar>
+
+
+
+
+
+
+
+              <Toolbar>
+
+
+
+
+
+
+
+                <Button id="paymentReturn"  text="Parasal İade Al"  type="Emphasized"           icon="sap-icon://sys-prev-page" press="paymentReturn" />
+
+
+
+
+
+
+
+                <Button text="Dışa Aktar"   type="Emphasized"     icon="sap-icon://excel-attachment"  press="exportToExcel" />
+
+
+
+
+
+
+
+                <Button text="Yazdır"       type="Emphasized"   icon="sap-icon://print"       press="printDialog" />
+
+
+
+
+
+
+
+              	<Button id="buttonUBL" 		text="UBL İndir"	type="Emphasized"     icon="sap-icon://excel-attachment"  press="downloadUBL" visible="false" />
+
+
+
+
+
+
+
+              </Toolbar>
+
+
+
+
+
+
+
+            </headerToolbar>
+
+
+
+
+
+
+
+            <columns>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Sipariş Numarası" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column demandPopin="false">
+
+
+
+
+
+
+
+                <Text text="Satış Kayıt No" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="false">
+
+
+
+
+
+
+
+                <Text text="Sip. Tarihi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Sip. Saati" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="NMU" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Tanım" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Seri No" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Miktar" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Birim Fiyat" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Toplam Tutar" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true" visible="false">
+
+
+
+
+
+
+
+                <Text text="TCKN/VKN" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Müşteri İsmi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true" visible="false">
+
+
+
+
+
+
+
+                <Text text="Ana Bayi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Bayi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Kullanıcı" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Satış. Tem." />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Ödeme Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Çıktı Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="İşlem Kanalı" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column visible="false" >
+
+
+
+
+
+
+
+                <Text text="Dealer ID" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column visible="false" >
+
+
+
+
+
+
+
+                <Text text="Belge Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column visible="false" >
+
+
+
+
+
+
+
+                <Text text="Ödeme Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column visible="false" >
+
+
+
+
+
+
+
+                <Text text="Satış Tem" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column visible="false" >
+
+
+
+
+
+
+
+                <Text text="Kalem no" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="İşlem Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Müşteri Tipi" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Fiş No" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="Fatura Matbu No" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+              <Column minScreenWidth="Tablet" demandPopin="true">
+
+
+
+
+
+
+
+                <Text text="E-Fatura" />
+
+
+
+
+
+
+
+              </Column>
+
+
+
+
+
+
+
+            </columns>
+
+
+
+
+
+
+
+          </Table>
+
+
+
+
+
+
+
+        </content>
+
+
+
+
+
+
+
+      </Panel>
+
+
+
+
+
+
+
+    </content>
+
+
+
+
+
+
+
+    <customHeader>
+
+
+
+
+
+
+
+      <Bar>
+
+
+
+
+
+
+
+        <contentLeft>
+
+
+
+
+
+
+
+          <Button 
+
+
+
+
+
+
+
+            text="Ana Menü"
+
+
+
+
+
+
+
+            type="Emphasized"
+
+
+
+
+
+
+
+            icon="sap-icon://home"
+
+
+
+
+
+
+
+            press="navBack" />
+
+
+
+
+
+
+
+        </contentLeft>
+
+
+
+
+
+
+
+        <contentMiddle>
+
+
+
+
+
+
+
+          <Label text="Satış Raporu" />
+
+
+
+
+
+
+
+        </contentMiddle>
+
+
+
+
+
+
+
+        <!-- <contentRight>
+
+
+
+
+
+
+
+          <Image src="img/logo.png" />
+
+
+
+
+
+
+
+        </contentRight> -->
+
+
+
+
+
+
+
+      </Bar>
+
+
+
+
+
+
+
+    </customHeader>
+
+
+
+
+
+
+
+    <footer>
+
+
+
+
+
+
+
+      <OverflowToolbar id="saleFooter" >
+
+
+
+
+
+
+
+        <ToolbarSpacer />
+
+
+
+
+
+
+
+        <Button text="Temizle" type="Emphasized" press="clear" />
+
+
+
+
+
+
+
+        <Button id="saleReportSearchSummary" text="Özet Rapor" type="Emphasized" press="search" />
+
+
+
+
+
+
+
+        <Button id="saleReportSearchDetail"  text="Detay Rapor" type="Emphasized" press="search" />
+
+
+
+
+
+
+
+      </OverflowToolbar>
+
+
+
+
+
+
+
+    </footer>
+
+
+
+
+
+
+
+  </Page>
+
+
+
+
+
+
+
+</core:View>

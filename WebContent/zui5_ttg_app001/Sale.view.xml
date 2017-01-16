@@ -1,0 +1,1393 @@
+<core:View controllerName="zui5_ttg_app001.Sale" xmlns:c="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+
+
+
+
+
+
+
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+
+
+
+
+
+
+
+	<Page enableScrolling="true">
+
+
+
+
+
+
+
+		<content>
+
+
+
+
+
+
+
+			<!-- <VBox> -->
+
+
+
+
+
+
+
+			<c:RoadMap class="RoadMapMargin" id="saleRoadMap">
+
+
+
+
+
+
+
+				<c:steps>
+
+
+
+
+
+
+
+					<c:RoadMapStep enabled="false" id="saleStep1" label="Ürün Bilgileri"/>
+
+
+
+
+
+
+
+					<c:RoadMapStep enabled="false" id="saleStep2" label="Genel Bilgiler"/>
+
+
+
+
+
+
+
+				</c:steps>
+
+
+
+
+
+
+
+			</c:RoadMap>
+
+
+
+
+
+
+
+			<NavContainer height="35rem" id="saleNavContainer" width="100%">
+
+
+
+
+
+
+
+				<Page enableScrolling="true" id="salePage1" showHeader="false">
+
+
+
+
+
+
+
+					<f:SimpleForm id="saleProdSearchForm">
+
+
+
+
+
+
+
+						<f:content>
+
+
+
+
+
+
+
+							<Label text="Seri / Ürün Kodu / Ürün Adı"/>
+
+
+
+
+
+
+
+							<SearchField id="inputProdSearch" maxLength="40" placeholder=" " search="searchProduct" width="70%"/>
+
+
+
+
+
+
+
+							<!-- <Label text="x"/>
+
+
+
+
+
+
+
+							                <Select id="xx"  placeholder="İl Seçin" change="" width="70%">
+
+
+
+
+
+
+
+							                    <items>
+
+
+
+
+
+
+
+							                     <core:Item key="1" text="1"/>
+
+
+
+
+
+
+
+							                     <core:Item key="2" text="2"/>
+
+
+
+
+
+
+
+							                     <core:Item key="3" text="3"/>
+
+
+
+
+
+
+
+							                     <core:Item key="4" text="4"/>
+
+
+
+
+
+
+
+							                     <core:Item key="5" text="5"/>
+
+
+
+
+
+
+
+							                     <core:Item key="6" text="6"/>
+
+
+
+
+
+
+
+							                     <core:Item key="7" text="7"/>
+
+
+
+
+
+
+
+							                     <core:Item key="8" text="8"/>
+
+
+
+
+
+
+
+							                     <core:Item key="9" text="9"/>
+
+
+
+
+
+
+
+							                     <core:Item key="10" text="10"/>
+
+
+
+
+
+
+
+							                     <core:Item key="21" text="21"/>
+
+
+
+
+
+
+
+							                     <core:Item key="22" text="22"/>
+
+
+
+
+
+
+
+							                     <core:Item key="23" text="23"/>
+
+
+
+
+
+
+
+							                     <core:Item key="24" text="24"/>
+
+
+
+
+
+
+
+							                     <core:Item key="25" text="25"/>
+
+
+
+
+
+
+
+							                     <core:Item key="26" text="26"/>
+
+
+
+
+
+
+
+							                     <core:Item key="27" text="27"/>
+
+
+
+
+
+
+
+							                     <core:Item key="28" text="28"/>
+
+
+
+
+
+
+
+							                     <core:Item key="29" text="29"/>
+
+
+
+
+
+
+
+							                     <core:Item key="30" text="30"/>
+
+
+
+
+
+
+
+							                   </items>
+
+
+
+
+
+
+
+							                 </Select> -->
+
+
+
+
+
+
+
+						</f:content>
+
+
+
+
+
+
+
+					</f:SimpleForm>
+
+
+
+
+
+
+
+					<List hAlign="center" headerText="Satış Kalemleri" id="saleProdList" noDataText="Seçilmiş ürün bulunmamaktadır..."></List>
+
+
+
+
+
+
+
+					<Text class="saleGeneralTotal" id="saleGeneralTotalRed"/>
+
+
+
+
+
+
+
+				</Page>
+
+
+
+
+
+
+
+				<Page enableScrolling="true" id="salePage2" showHeader="false">
+
+
+
+
+
+
+
+					<!--                <l:Grid defaultSpan="L6 M6 S12"> -->
+
+
+
+
+
+
+
+					<l:Grid defaultSpan="L6 M6 S12">
+
+
+
+
+
+
+
+						<f:SimpleForm id="generalCustInfoForm">
+
+
+
+
+
+
+
+							<f:content>
+
+
+
+
+
+
+
+								<Label text="Müşteri Tipi"/>
+
+
+
+
+
+
+
+								<RadioButtonGroup columns="3" id="generalSaleCustomerType" select="customerTypeSelected">
+
+
+
+
+
+
+
+									<RadioButton id="generalSaleCustomerType-01" text="Bireysel"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalSaleCustomerType-02" text="Kurumsal"/>
+
+
+
+
+
+
+
+								</RadioButtonGroup>
+
+
+
+
+
+
+
+								<Label id="saleLabelName" required="false" text="Adı Soyadı"/>
+
+
+
+
+
+
+
+								<Input id="saleGeneralCustName" maxLength="40"/>
+
+
+
+
+
+
+
+								<Label id="saleLabelTCKN" required="true" text="TCKN" type="Number"/>
+
+
+
+
+
+
+
+								<Input id="saleGeneralTCKN" maxLength="11"/>
+
+
+
+
+
+
+
+								<Label id="saleLabelTaxCenter" required="false" text="Vergi Dairesi"/>
+
+
+
+
+
+
+
+								<Input id="saleGeneralTaxCenter" maxLength="120"/>
+
+
+
+
+
+
+
+								<Label id="saleLabelMail" text="Mail Adresi" required="false" />
+
+
+
+
+
+
+
+								<Input id="saleGeneralMail" maxLength="60" placeholder="E-fatura emaili göndermek için doldurunuz" />
+
+
+
+
+
+
+
+								<!--Agile Sprint3-->
+
+
+
+
+
+
+
+								<Label id="saleLabelPO" required="false" text="PO/Ön Kayıt No" type="Number"/> 
+
+
+
+
+
+
+
+								<Input id="salePo" maxLength="10"/>
+
+
+
+
+
+
+
+								<!--Agile sprint3-->
+
+
+
+
+
+
+
+								<Label id="saleLabelCity" required="false" text="İl"/>
+
+
+
+
+
+
+
+								<!--                  <Select -->
+
+
+
+
+
+
+
+								<!--                    id="saleGeneralCity"/> -->
+
+
+
+
+
+
+
+								<!--                    change="onCitySelection" -->
+
+
+
+
+
+
+
+								<!--                  <ComboBox -->
+
+
+
+
+
+
+
+								<!--                    id="saleGeneralCity"> -->
+
+
+
+
+
+
+
+								<!--                    selectionChange="onCitySelection"> -->
+
+
+
+
+
+
+
+								<!--                    items="{/}" -->
+
+
+
+
+
+
+
+								<!--                    <core:Item key="{code}" text="{text}"/> -->
+
+
+
+
+
+
+
+								<!--                  </ComboBox> -->
+
+
+
+
+
+
+
+								<Input id="saleGeneralCityLive" placeHolder="..." showSuggestion="true" suggestionItemSelected="onCitySuggestionSelected" value=""></Input>
+
+
+
+
+
+
+
+								<!-- <MultiInput
+
+
+
+
+
+
+
+								                    id="saleGeneralCity"
+
+
+
+
+
+
+
+								                    valueHelpRequest="onCityValueHelpRequest"
+
+
+
+
+
+
+
+								                    tokenChange="cityTokenChange"
+
+
+
+
+
+
+
+								                    liveChange="onMultiInputLiveChange"/> -->
+
+
+
+
+
+
+
+								<!-- <Input
+
+
+
+
+
+
+
+								                    id="saleGeneralCity"
+
+
+
+
+
+
+
+								                    type="Text"
+
+
+
+
+
+
+
+								                    showSuggestion="true"
+
+
+
+
+
+
+
+								                    suggest="onSuggestCity"
+
+
+
+
+
+
+
+								                    suggestionItemSelected="onCitySuggestionSelected"
+
+
+
+
+
+
+
+								                    suggestionItems="{/}">
+
+
+
+
+
+
+
+								                    <suggestionItems>
+
+
+
+
+
+
+
+								                      <core:Item key="{code}" text="{text}"/>
+
+
+
+
+
+
+
+								                    </suggestionItems>
+
+
+
+
+
+
+
+								                  </Input> -->
+
+
+
+
+
+
+
+								<Label id="saleLabelCityPart" required="false" text="İlçe"/>
+
+
+
+
+
+
+
+								<!--                  <ComboBox id="saleGeneralCitypart"/> -->
+
+
+
+
+
+
+
+								<Input id="saleGeneralCityPartLive" placeHolder="..." showSuggestion="true" suggestionItemSelected="onCityPartSuggestionSelected" value=""></Input>
+
+
+
+
+
+
+
+								<!-- <MultiInput
+
+
+
+
+
+
+
+								                    id="saleGeneralCitypart"
+
+
+
+
+
+
+
+								                    valueHelpRequest="onCitypartValueHelpRequest"
+
+
+
+
+
+
+
+								                    liveChange="onMultiInputLiveChange"/> -->
+
+
+
+
+
+
+
+								<Label id="saleLabelAddress" required="false" text="Adres"/>
+
+
+
+
+
+
+
+								<TextArea id="saleGeneralAddress" maxLength="500" rows="5"/>
+
+
+
+
+
+
+
+							</f:content>
+
+
+
+
+
+
+
+						</f:SimpleForm>
+
+
+
+
+
+
+
+						<f:SimpleForm id="generalSaleInfoForm">
+
+
+
+
+
+
+
+							<f:content>
+
+
+
+
+
+
+
+								<Label text="Çıktı Tipi"/>
+
+
+
+
+
+
+
+								<RadioButtonGroup columns="3" id="generalSaleOutputType" select="outputTypeSelected">
+
+
+
+
+
+
+
+									<RadioButton id="generalSaleOutputType-01" text="Fatura"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalSaleOutputType-02" text="Fiş"/>
+
+
+
+
+
+
+
+								</RadioButtonGroup>
+
+
+
+
+
+
+
+								<Label text="Ödeme Tipi"/>
+
+
+
+
+
+
+
+								<RadioButtonGroup columns="3" id="generalSalePaymentType">
+
+
+
+
+
+
+
+									<RadioButton id="generalSalePaymentType-01" text="Nakit"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalSalePaymentType-02" text="Kredi Kartı"/>
+
+
+
+
+
+
+
+								</RadioButtonGroup>
+
+
+
+
+
+
+
+								<!--Agile Sprint3-->
+
+
+
+
+
+
+
+								<Label text="Şirket"/>
+
+
+
+
+
+
+
+								<RadioButtonGroup columns="3" id="generalCompanyType" select="companyTypeSelected">
+
+
+
+
+
+
+
+									<RadioButton id="generalCompanyType-01" text="TT"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalCompanyType-02" text="TTNET"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalCompanyputType-03" text="Avea"/>
+
+
+
+
+
+
+
+									<RadioButton id="generalCompanyputType-04" text="Diğer"/>
+
+
+
+
+
+
+
+								</RadioButtonGroup> 
+
+
+
+
+
+
+
+								<!--Agile Sprint3-->
+
+
+
+
+
+
+
+								<Label required="true" text="Adına İşlem Yapılan Satış Temsilcisi"/>
+
+
+
+
+
+
+
+								<Select id="saleGeneralRepresentative">
+
+
+
+
+
+
+
+									<core:Item key="{Bname}" text="{NameFirst}"/>
+
+
+
+
+
+
+
+								</Select>
+
+
+
+
+
+
+
+								<!-- added by CKAYMAZ on 18.10.2016 -->
+
+
+
+
+
+
+
+								<Label required="false" text="Ürün Sahibi Firma"/>
+
+
+
+
+
+
+
+								<Select id="saleFirma">
+
+
+
+
+
+
+
+									<core:Item key="0" text=" "/>
+
+
+
+
+
+
+
+									<core:Item key="1" text="TT"/>
+
+
+
+
+
+
+
+									<core:Item key="2" text="TTNET"/>
+
+
+
+
+
+
+
+									<core:Item key="3" text="AVEA"/>
+
+
+
+
+
+
+
+								</Select>
+
+
+
+
+
+
+
+								<!-- end add   -->
+
+
+
+
+
+
+
+								<Label text=""/>
+
+
+
+
+
+
+
+								<Text text=""/>
+
+
+
+
+
+
+
+							</f:content>
+
+
+
+
+
+
+
+						</f:SimpleForm>
+
+
+
+
+
+
+
+					</l:Grid>
+
+
+
+
+
+
+
+					<Panel height="300px" id="dummyPanel"/>
+
+
+
+
+
+
+
+				</Page>
+
+
+
+
+
+
+
+			</NavContainer>
+
+
+
+
+
+
+
+			<!-- </VBox> -->
+
+
+
+
+
+
+
+		</content>
+
+
+
+
+
+
+
+		<customHeader>
+
+
+
+
+
+
+
+			<Bar>
+
+
+
+
+
+
+
+				<contentLeft>
+
+
+
+
+
+
+
+					<Button icon="sap-icon://home" press="navBack" text="Ana Menü" type="Emphasized"/>
+
+
+
+
+
+
+
+				</contentLeft>
+
+
+
+
+
+
+
+				<contentMiddle>
+
+
+
+
+
+
+
+					<Label id="saleViewTitle" text="Satış"/>
+
+
+
+
+
+
+
+				</contentMiddle>
+
+
+
+
+
+
+
+				<!-- <contentRight>
+
+
+
+
+
+
+
+				          <Image src="img/logo.png"/>
+
+
+
+
+
+
+
+				        </contentRight> -->
+
+
+
+
+
+
+
+			</Bar>
+
+
+
+
+
+
+
+		</customHeader>
+
+
+
+
+
+
+
+		<footer>
+
+
+
+
+
+
+
+			<OverflowToolbar id="saleFooter">
+
+
+
+
+
+
+
+				<ToolbarSpacer/>
+
+
+
+
+
+
+
+				<Text id="saleFooterTotalPrice" text="Genel Toplam: 0.00"/>
+
+
+
+
+
+
+
+				<ToolbarSeparator/>
+
+
+
+
+
+
+
+				<Button icon="sap-icon://slim-arrow-left" press="navigationBack" text="Geri" type="Emphasized"/>
+
+
+
+
+
+
+
+				<Button icon="sap-icon://slim-arrow-right" press="saleRoadMapForward" text="İleri" type="Emphasized"/>
+
+
+
+
+
+
+
+			</OverflowToolbar>
+
+
+
+
+
+
+
+		</footer>
+
+
+
+
+
+
+
+	</Page>
+
+
+
+
+
+
+
+</core:View>
