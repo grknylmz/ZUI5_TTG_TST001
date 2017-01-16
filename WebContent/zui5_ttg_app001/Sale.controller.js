@@ -5661,7 +5661,7 @@ sap.ui.controller("zui5_ttg_app001.Sale", {
 
 		oData.results[0].Vanilla == "X" ? bFlagged = true : bFlagged = false;
 
-		// check if same product already exists in list
+		// check if same product already exists in list Test
 
 		var aItem = oList.getItems();
 
