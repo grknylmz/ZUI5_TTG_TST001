@@ -11,7 +11,7 @@ var oNumberFormat = sap.ui.core.format.NumberFormat.getFloatInstance({
 	decimalSeparator: ","
 
 });
-
+//comment
 var oNumberFormatTotal = sap.ui.core.format.NumberFormat.getFloatInstance({
 
 	minFractionDigits: 2,
