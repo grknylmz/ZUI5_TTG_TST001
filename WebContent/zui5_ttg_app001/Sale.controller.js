@@ -4947,6 +4947,14 @@ sap.ui.controller("zui5_ttg_app001.Sale", {
 								break;
 							}
 						}
+						//yocoskun sprint5
+						for (var i = 0; i < aDataList.length; i++) {
+							if (aDataList[i].Matnr == sMatnr) {
+								aDataList.splice(i, 1);
+								break;
+							}
+						}
+
 
 						var sTotalPrice = "Genel Toplam: " + oNumberFormatTotal.format(oView.getController().getTotalPrice()).toString() + " TL";
 
@@ -5631,8 +5639,11 @@ sap.ui.controller("zui5_ttg_app001.Sale", {
 			sSerial,
 			bTTG;
 
+		//yocoskun sprint5
+		aDataList.push(oData.results[0]);
+		aKdvList.push(oData.results[0].Kdv);
+		
 		// do not allow zero price
-
 		if (oData.results[0].Kwert <= 0.00 && sSaleType == "S") {
 			var oMessageData = {
 				TYPE: "E",
@@ -5652,7 +5663,9 @@ sap.ui.controller("zui5_ttg_app001.Sale", {
 				};
 
 				oController.showMessage(oMessageData);
-
+				//yocoskun sprint5
+				aKdvList.splice(i+1,1);
+	
 				return;
 
 			}
@@ -16163,9 +16176,24 @@ sap.ui.controller("zui5_ttg_app001.Sale", {
 
 				oView.byId("saleGeneralTaxCenter").setVisible(true);
 
-				//oView.byId("generalCompanyType").setVisible(true); // Agile Sprint3
+				oView.byId("generalCompanyType").setVisible(true); // Agile Sprint5
 
 				bEditable = true;
+				
+			//yocoskun sprint5
+			for (var i = 0; i < aDataList.length; i++) {
+		    if(aDataList[i].Taxm1 === "0"){
+		        oView.byId("generalCompanyType-01").setEnabled(false);
+		        oView.byId("generalCompanyType-02").setEnabled(false);
+		        oView.byId("generalCompanyputType-04").setEnabled(false);
+	    	}
+	    	else{
+	    	    oView.byId("generalCompanyType-01").setEnabled(true);
+		        oView.byId("generalCompanyType-02").setEnabled(true);
+		        oView.byId("generalCompanyputType-04").setEnabled(true);
+	    	}
+			}
+
 
 				break;
 
